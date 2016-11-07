@@ -18,11 +18,23 @@ add_filter( 'the_excerpt','social_warfare_wrapper' );
  * @return String $content The modified content
  */
 function social_warfare_wrapper( $content ) {
+    // GX start -
+    global $post, $swp_already_print;
+    $post_id = $post->ID;
+
+    //Check if already printed for this post
+    if( in_array( $post_id, $swp_already_print )  )
+        return $content;
+    // - GX end
+
 	$array['content'] = $content;
 	$content = social_warfare_buttons( $array );
 	if( false === is_admin() ):
 		$content .= '<div class="swp-content-locator"></div>';
 	endif;
+
+    array_push( $swp_already_print, $post_id ); //GX
+
 	return $content;
 }
 

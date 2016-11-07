@@ -17,6 +17,8 @@ define( 'SWP_PLUGIN_FILE', __FILE__ );
 define( 'SWP_PLUGIN_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
 define( 'SWP_PLUGIN_DIR', dirname( __FILE__ ) );
 
+global $swp_already_print;
+$swp_already_print = array();
 /**
  * Include the plugin's necessary functions files.
  */
